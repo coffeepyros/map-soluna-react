@@ -1,6 +1,6 @@
-export function editCell() {
+export function editCell(data) {
   return {
     type: "EDIT_CELL",
-    payload: {},
+    payload: data,
   };
 }
