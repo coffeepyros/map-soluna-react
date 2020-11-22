@@ -1,6 +1,7 @@
-import { mapData } from "../mapData";
+import { playerMapData, gmMapData } from "../mapData";
+let initialState = [...playerMapData];
 
-export const reducer = (state = mapData, action) => {
+export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "EDIT_CELL":
       let newState = [...state];
@@ -12,6 +13,11 @@ export const reducer = (state = mapData, action) => {
         notes: action.payload.notes,
       };
       return newState;
+
+    case "SWITCH_USER":
+      if (action.payload === "gm") return [...gmMapData];
+      else if (action.payload === "player") return [...playerMapData];
+      else return state;
 
     default:
       return state;

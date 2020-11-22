@@ -53,7 +53,6 @@ button {
   padding: 0.67rem 1.33rem;
   cursor: pointer;
   background-color: rgba(255, 255, 255, 0.67);
-  box-shadow: 4px 4px #ccc;
 }
 main button {
   padding: 0;
@@ -64,7 +63,6 @@ main button {
 }
 button:hover {
   background-color: #fff;
-  box-shadow: 4px 4px #ddd;
 }
 #addRowUp,
 #addRowDown {
@@ -159,6 +157,19 @@ form#formEditCell textarea {
 }
 form + form {
   margin-top: 2rem;
+}
+aside button {
+  font-size: 15px;
+  color: #fff;
+  text-shadow: 1px 1px 0 #333;
+  background-color: rgba(0, 0, 0, 0.33);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.67);
+}
+aside button:hover {
+  color: #000;
+  text-shadow: 1px 1px 0 #fff;
+  background-color: rgba(255, 255, 255, 0.67);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.67);
 }
 button + button {
   margin-left: 0.67rem;

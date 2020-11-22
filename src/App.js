@@ -2,7 +2,7 @@ import React from "react";
 import Map from "./components/Map";
 import NotesOverlay from "./components/NotesOverlay";
 import { useDispatch } from "react-redux";
-import { editCell } from "./redux/actions";
+import { editCell, switchUser } from "./redux/actions";
 import "./App.css";
 
 export default function App() {
@@ -18,9 +18,19 @@ export default function App() {
       <NotesOverlay />
       {/* User selection in top right corner */}
       <section id="admin">
-        <select id="user" name="user">
-          <option>Player</option>
-          <option>GM</option>
+        <select
+          id="user"
+          name="user"
+          onChange={(e) => {
+            let user = e.target.value;
+            console.log(user);
+            dispatch(switchUser(user));
+          }}
+        >
+          <option value="player" defaultValue="selected">
+            Player
+          </option>
+          <option value="gm">GM</option>
         </select>
       </section>
       {/* Main Headline, is placed absolutely, above (z-index) map */}

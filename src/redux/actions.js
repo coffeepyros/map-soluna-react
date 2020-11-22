@@ -4,3 +4,9 @@ export function editCell(data) {
     payload: data,
   };
 }
+export function switchUser(user) {
+  return {
+    type: "SWITCH_USER",
+    payload: user,
+  };
+}
