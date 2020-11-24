@@ -1,6 +1,4 @@
 import React from "react";
-import Map from "./components/Map";
-import NotesOverlay from "./components/NotesOverlay";
 import { useDispatch } from "react-redux";
 import {
   editCell,
@@ -10,6 +8,8 @@ import {
   addColumnLeft,
   addColumnRight,
 } from "./redux/actions";
+import Map from "./components/Map";
+import NotesOverlay from "./components/NotesOverlay";
 import "./App.css";
 
 export default function App() {
@@ -30,7 +30,6 @@ export default function App() {
           name="user"
           onChange={(e) => {
             let user = e.target.value;
-            console.log(user);
             dispatch(switchUser(user));
           }}
         >
@@ -44,6 +43,8 @@ export default function App() {
       <header>
         <h1>Map of Soluna</h1>
       </header>
+
+      {/* MAP AND BUTTONS TO INCREASE THE MAP SIZE */}
       <main>
         <button
           className="addCells" // visuals (CSS)
@@ -84,6 +85,8 @@ export default function App() {
           +1
         </button>
       </main>
+
+      {/* USER INTERFACE (RIGHT SIDE OF LAYOUT) */}
       <aside>
         <form
           id="mapInterface"
