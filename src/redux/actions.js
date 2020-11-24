@@ -1,12 +1,32 @@
+export function switchUser(user) {
+  return {
+    type: "SWITCH_USER",
+    payload: user,
+  };
+}
 export function editCell(data) {
   return {
     type: "EDIT_CELL",
     payload: data,
   };
 }
-export function switchUser(user) {
+export function addRowUp() {
   return {
-    type: "SWITCH_USER",
-    payload: user,
+    type: "ADD_ROW_UP",
+  };
+}
+export function addRowDown() {
+  return {
+    type: "ADD_ROW_DOWN",
+  };
+}
+export function addColumnLeft() {
+  return {
+    type: "ADD_COLUMN_LEFT",
+  };
+}
+export function addColumnRight() {
+  return {
+    type: "ADD_COLUMN_RIGHT",
   };
 }

@@ -2,7 +2,14 @@ import React from "react";
 import Map from "./components/Map";
 import NotesOverlay from "./components/NotesOverlay";
 import { useDispatch } from "react-redux";
-import { editCell, switchUser } from "./redux/actions";
+import {
+  editCell,
+  switchUser,
+  addRowUp,
+  addRowDown,
+  addColumnLeft,
+  addColumnRight,
+} from "./redux/actions";
 import "./App.css";
 
 export default function App() {
@@ -38,18 +45,42 @@ export default function App() {
         <h1>Map of Soluna</h1>
       </header>
       <main>
-        <button className="addCells" id="addRowUp">
+        <button
+          className="addCells" // visuals (CSS)
+          id="addRowUp" // needed for CSS Grid
+          onClick={() => {
+            dispatch(addRowUp()); // Redux Action
+          }}
+        >
           +1
         </button>
-        <button className="addCells" id="addColLeft">
+        <button
+          className="addCells"
+          id="addColLeft"
+          onClick={() => {
+            dispatch(addColumnLeft());
+          }}
+        >
           +2
         </button>
         {/* The Map itself, is build out of <Cell> components. */}
         <Map />
-        <button className="addCells" id="addColRight">
+        <button
+          className="addCells"
+          id="addColRight"
+          onClick={() => {
+            dispatch(addColumnRight());
+          }}
+        >
           +2
         </button>
-        <button className="addCells" id="addRowDown">
+        <button
+          className="addCells"
+          id="addRowDown"
+          onClick={() => {
+            dispatch(addRowDown());
+          }}
+        >
           +1
         </button>
       </main>
@@ -75,10 +106,17 @@ export default function App() {
           <button id="hideCoords">Hide Coordinates</button>
         </form>
 
-        <form id="formMapData">
+        <form
+          id="formMapData"
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
           <h2>Load / Save</h2>
-          <button id="btnImport">Import Map</button>
-          <button id="btnExport">Export Map</button>
+          {/* <button id="btnImport">Import Map</button> */}
+          <button id="btnExport" type="submit">
+            Export Map
+          </button>
         </form>
 
         <form
