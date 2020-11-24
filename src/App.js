@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   editCell,
   switchUser,
@@ -13,6 +13,7 @@ import NotesOverlay from "./components/NotesOverlay";
 import "./App.css";
 
 export default function App() {
+  const mapData = useSelector((state) => state);
   const dispatch = useDispatch();
   return (
     <React.Fragment>
@@ -117,9 +118,29 @@ export default function App() {
         >
           <h2>Load / Save</h2>
           {/* <button id="btnImport">Import Map</button> */}
-          <button id="btnExport" type="submit">
-            Export Map
+          <button
+            id="btnDownload"
+            onClick={() => {
+              var dataStr =
+                "data:text/json;charset=utf-8," +
+                encodeURIComponent(
+                  "export const playerMapData = " +
+                    JSON.stringify(mapData) +
+                    ";"
+                );
+              var downloadAnchorNode = document.createElement("a");
+              downloadAnchorNode.setAttribute("href", dataStr);
+              downloadAnchorNode.setAttribute("download", "map-soluna.txt");
+              document.body.appendChild(downloadAnchorNode); // required for firefox
+              downloadAnchorNode.click();
+              downloadAnchorNode.remove();
+            }}
+          >
+            Download Map
           </button>
+          {/* <button id="btnExport" type="submit">
+            Export Map
+          </button> */}
         </form>
 
         <form
