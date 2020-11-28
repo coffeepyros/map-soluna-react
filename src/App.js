@@ -9,21 +9,25 @@ import {
   addColumnRight,
 } from "./redux/actions";
 import Map from "./components/Map";
-import NotesOverlay from "./components/NotesOverlay";
 import "./App.css";
 
 export default function App() {
   const mapData = useSelector((state) => state);
+  // const [formData, setFormData] = useState(); // use React hook to store note details
   const dispatch = useDispatch();
+
+  // function handleChange(e) {
+  //   setFormData({ ...formData, [e.target.id]: e.target.value });
+  // }
+
   return (
     <React.Fragment>
       {/* Overlay for Export / Import */}
-      <div id="overlay" className="hidden">
+      {/* <div id="overlay" className="hidden">
         <a href="#">[ Close ]</a>
         <textarea></textarea>
-      </div>
-      {/* Overlay for Notes, displayed on hover next to hex cell */}
-      <NotesOverlay />
+      </div> */}
+
       {/* User selection in top right corner */}
       <section id="admin">
         <select
@@ -40,6 +44,7 @@ export default function App() {
           <option value="gm">GM</option>
         </select>
       </section>
+
       {/* Main Headline, is placed absolutely, above (z-index) map */}
       <header>
         <h1>Map of Soluna</h1>
@@ -67,6 +72,7 @@ export default function App() {
         </button>
         {/* The Map itself, is build out of <Cell> components. */}
         <Map />
+
         <button
           className="addCells"
           id="addColRight"
@@ -147,28 +153,44 @@ export default function App() {
           id="formEditCell"
           onSubmit={(e) => {
             e.preventDefault();
-            let formData = {
-              colIndex: document.getElementById("colIndex").value,
-              cellIndex: document.getElementById("cellIndex").value,
+            let sendData = {
+              // React can't handle hidden input fields, so I have to add the values directly and not over the state
+              colIndex: parseInt(document.getElementById("colIndex").value),
+              cellIndex: parseInt(document.getElementById("cellIndex").value),
+
+              // The rest is read dynamically with the handleChange function...
+              // label: formData.label,
+              // terrain: formData.terrain,
+              // notes: formData.notes,
+
+              // Nope, it's not. When you click on a cell with existing input and only change one thing,
+              //  the existing data is not submitted, because it didn't *CHANGE* ... and the redux action
+              // EDIT_CELL needs a full set of data.
+
               label: document.getElementById("label").value,
               terrain: document.getElementById("terrain").value,
               notes: document.getElementById("notes").value,
             };
-            dispatch(editCell(formData));
+            dispatch(editCell(sendData));
           }}
         >
           <h2>Edit Map Cell</h2>
-          <input type="hidden" id="colIndex" name="colIndex" value="0" />
-          <input type="hidden" id="cellIndex" name="cellIndex" value="0" />
+          {/* Hidden input fields for storing Column and Cell index (coming from Cell.jsx click event) */}
+          <input type="hidden" id="colIndex" name="colIndex" />
+          <input type="hidden" id="cellIndex" name="cellIndex" />
 
           <label htmlFor="cellID">Cell ID:</label>
           <input type="text" id="cellID" name="cellID" readOnly="readonly" />
 
           <label htmlFor="label">Label:</label>
-          <input type="text" id="label" name="label" />
+          <input
+            type="text"
+            id="label"
+            name="label" /* onChange={handleChange} */
+          />
 
           <label htmlFor="terrain">Terrain:</label>
-          <select id="terrain" name="terrain">
+          <select id="terrain" name="terrain" /* onChange={handleChange} */>
             <option value="capitol">Capitol</option>
             <option value="city">City</option>
             <option value="forest">Forest</option>
@@ -178,12 +200,17 @@ export default function App() {
             <option value="steppe">Steppe</option>
             <option value="swamp">Swamp</option>
             <option value="water">Water</option>
-            <option value="">---</option>
+            <option value="" defaultValue="selected">
+              ---
+            </option>
             <option value="undiscovered">Undiscovered</option>
           </select>
 
           <label htmlFor="notes">Notes:</label>
-          <textarea id="notes" name="notes"></textarea>
+          <textarea
+            id="notes"
+            name="notes" /* onChange={handleChange} */
+          ></textarea>
 
           <button type="submit">Save</button>
           <p>

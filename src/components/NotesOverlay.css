@@ -1,6 +1,5 @@
 #notesOverlay {
   position: absolute;
-  display: none;
   width: 40ch;
   background-color: rgba(0, 0, 0, 0.75);
   z-index: 15;
@@ -24,4 +23,7 @@
 }
 #notesOverlay em {
   font-style: normal;
+}
+#notesOverlay .hidden {
+  visibility: hidden;
 }

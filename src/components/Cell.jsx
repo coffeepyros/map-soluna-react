@@ -6,8 +6,8 @@ export default function Cell(props) {
   return (
     <figure
       className={classList}
-      data-col={props.arrayIndex.col}
-      data-cell={props.arrayIndex.cell}
+      data-col={props.arrayIndex.col} // storing an identifying Column Index as data attribute inside the HTML element
+      data-cell={props.arrayIndex.cell} // storing an identifying Cell Index as data attribute inside the HTML element
       onClick={(e) => {
         // Hidden input elements with array indices for column (x) and cell (y)
         document.getElementById("colIndex").value = props.arrayIndex.col;
