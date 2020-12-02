@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  switchView,
   editCell,
-  switchUser,
   addRowUp,
   addRowDown,
   addColumnLeft,
@@ -12,22 +12,12 @@ import Map from "./components/Map";
 import "./App.css";
 
 export default function App() {
-  const mapData = useSelector((state) => state);
-  // const [formData, setFormData] = useState(); // use React hook to store note details
+  const mapData = useSelector((state) => state); // read map data from Redux store
   const dispatch = useDispatch();
-
-  // function handleChange(e) {
-  //   setFormData({ ...formData, [e.target.id]: e.target.value });
-  // }
+  const [view, setView] = useState("player"); // player map, or game master map
 
   return (
     <React.Fragment>
-      {/* Overlay for Export / Import */}
-      {/* <div id="overlay" className="hidden">
-        <a href="#">[ Close ]</a>
-        <textarea></textarea>
-      </div> */}
-
       {/* User selection in top right corner */}
       <section id="admin">
         <select
@@ -35,7 +25,8 @@ export default function App() {
           name="user"
           onChange={(e) => {
             let user = e.target.value;
-            dispatch(switchUser(user));
+            dispatch(switchView(user)); // Redux Action for reading new map data into store
+            setView(user); // Hook for naming download file
           }}
         >
           <option value="player" defaultValue="selected">
@@ -70,6 +61,8 @@ export default function App() {
         >
           +2
         </button>
+
+        {/* ---------- THE MAP ---------- */}
         {/* The Map itself, is build out of <Cell> components. */}
         <Map />
 
@@ -129,24 +122,20 @@ export default function App() {
             onClick={() => {
               var dataStr =
                 "data:text/json;charset=utf-8," +
-                encodeURIComponent(
-                  "export const playerMapData = " +
-                    JSON.stringify(mapData) +
-                    ";"
-                );
+                encodeURIComponent(JSON.stringify(mapData));
               var downloadAnchorNode = document.createElement("a");
               downloadAnchorNode.setAttribute("href", dataStr);
-              downloadAnchorNode.setAttribute("download", "map-soluna.txt");
+              downloadAnchorNode.setAttribute(
+                "download",
+                `map-soluna-${view}.txt`
+              );
               document.body.appendChild(downloadAnchorNode); // required for firefox
               downloadAnchorNode.click();
               downloadAnchorNode.remove();
             }}
           >
-            Download Map
+            Download Active Map
           </button>
-          {/* <button id="btnExport" type="submit">
-            Export Map
-          </button> */}
         </form>
 
         <form

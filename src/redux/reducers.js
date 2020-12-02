@@ -5,7 +5,7 @@ export const reducer = (state = initialState, action) => {
   let newState, nrOfColumns;
 
   switch (action.type) {
-    case "SWITCH_USER":
+    case "SWITCH_VIEW":
       if (action.payload === "gm") return [...gmMapData];
       else if (action.payload === "player") return [...playerMapData];
       else return state;

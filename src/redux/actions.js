@@ -1,6 +1,6 @@
-export function switchUser(user) {
+export function switchView(user) {
   return {
-    type: "SWITCH_USER",
+    type: "SWITCH_VIEW",
     payload: user,
   };
 }
