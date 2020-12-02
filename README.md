@@ -1,6 +1,21 @@
-https://react-map-tool.vercel.app/
+# End of React Module Project
 
-# Getting Started with Create React App
+Hex-based mapping tool for Dungeons & Dragons RPG campaign. Players can label newly discovered areas of the world, add a terrain type and notes.
+
+## Technology used
+- HTML/CSS (no Bootstrap)
+- Vanilla JS
+- React 
+- Redux
+- Data Source: JS-File
+- Permanent Change: Download object and overwrite the data source code by hand.
+
+Deployed: https://react-map-tool.vercel.app/ (not uptodate)
+
+--------------------------------------------------
+--------------------------------------------------
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
