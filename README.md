@@ -12,6 +12,10 @@ Hex-based mapping tool for Dungeons & Dragons RPG campaign. Players can label ne
 
 Deployed: https://react-map-tool.vercel.app/ (not uptodate)
 
+## Basic Component Breakdown
+
+![Soluna Diagram](soluna_diagram.png "Soluna Diagramm")
+
 --------------------------------------------------
 --------------------------------------------------
 
