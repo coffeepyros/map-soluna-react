@@ -1,4 +1,4 @@
-# End of React Module Project
+# End of React Module - Test Project
 
 Hex-based mapping tool for Dungeons & Dragons RPG campaign. Players can label newly discovered areas of the world, add a terrain type and notes.
 
@@ -15,6 +15,11 @@ Deployed: https://react-map-tool.vercel.app/ (not uptodate)
 ## Basic Component Breakdown
 
 ![Soluna Diagram](soluna_diagram.png "Soluna Diagramm")
+
+## ToDo/Bugs
+
+- cleaner separation between Player and GM map
+- transfer data source from JS file to database
 
 --------------------------------------------------
 --------------------------------------------------
