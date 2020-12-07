@@ -10,7 +10,7 @@ Hex-based mapping tool for Dungeons & Dragons RPG campaign. Players can label ne
 - Data Source: JS-File
 - Permanent Change: Download object and overwrite the data source code by hand.
 
-Deployed: https://react-map-tool.vercel.app/ (not uptodate)
+Deployed: https://react-map-tool.vercel.app/
 
 ## Basic Component Breakdown
 
